@@ -28,7 +28,9 @@ DJANGO_APPS = [
 # Application definition
 THIRD_PARTY_APPS = [
     'anymail',
-    'django_extensions',   
+    'django_extensions',
+    'corsheaders',
+    'django_summernote',   
 ]
 
 LOCAL_APPS = ['apps.mail','apps.fructs',]
