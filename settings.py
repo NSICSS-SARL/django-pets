@@ -16,22 +16,22 @@ SECRET_KEY = 'django-insecure-+=t1b_zg0oq^v+j70#-eq#38k3-it_+_zcgado4xhv=wye$7d%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'anymail',
-    'django_extensions',   
-    'fructs.apps.FructsConfig',   
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mail',
+    'apps.mail',
+    'apps.fructs',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'fruit.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'fruit.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
