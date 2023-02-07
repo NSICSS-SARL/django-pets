@@ -72,3 +72,18 @@ class Subscriber(models.Model):
 
     def __str__(self):
         return self.email + " (" + ("not " if not self.confirmed else "") + "confirmed)"
+
+class Testimonial(models.Model):
+    photo = models.ImageField(null=True, blank=True, upload_to='tester_images')
+    name = models.CharField(max_length=50)
+    work = models.CharField(max_length=20)
+    declaration = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+class Title(models.Model):    
+    label = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.label

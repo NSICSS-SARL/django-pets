@@ -11,6 +11,9 @@ import re
 from django.core.mail import send_mail
 from .forms import *
 
+from rest_framework import viewsets # new
+from .serializers import TitleSerializer, TestimonialSerializer
+
 
 # Create your views here.
 def index(request):    
@@ -60,72 +63,3 @@ def contact(request):
     return render(request, 'fructs/contact.html')
 
 
-def mailer(request):
-    form = MailForm()
-    print("my_post", request)
-    if request.method == "POST":
-        print('sended')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
-        email = request.POST.get('email')
-        send_mail(subject, message, email, [email])
-        return render(request, 'fructs/send.html')
-    context = {'form': form}
-    return render(request, 'fructs/mailer.html', context)
-
-
-def save_email(email):
-    try:
-        subscribe_model_instance = SubscribeModel.objects.get(email=email)
-    except ObjectDoesNotExist as e:
-        subscribe_model_instance = SubscribeModel()
-        subscribe_model_instance.email = email
-    except Exception as e:
-        logging.getLogger("error").error(traceback.format_exc())
-        return False
-
-    # does not matter if already subscribed or not...resend the email
-    subscribe_model_instance.status = constants.SUBSCRIBE_STATUS_SUBSCRIBED
-    subscribe_model_instance.created_date = utility.now()
-    subscribe_model_instance.updated_date = utility.now()
-    subscribe_model_instance.save()
-    return True
-
-
-# Helper Functions
-def random_digits():
-    return "%0.12d" % random.randint(0, 999999999999)
-
-@csrf_exempt
-def new(request, page):
-    if request.method == 'POST':
-        sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
-        sub.save()
-        message = Mail(
-            from_email=settings.FROM_EMAIL,
-            to_emails=sub.email,
-            subject='Newsletter Confirmation',
-            html_content='Thank you for signing up for my email newsletter! \
-                Please complete the process by \
-                <a href="{}/confirm/?email={}&conf_num={}"> clicking here to \
-                confirm your registration</a>.'.format(request.build_absolute_uri('/confirm/'),
-                                                    sub.email,
-                                                    sub.conf_num))
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        response = sg.send(message)
-        return render(request, page)
-    else:
-        return render(request,  page)
-
-
-def validate_email(request): 
-    email = request.POST.get("email", None)   
-    if email is None:
-        res = JsonResponse({'msg': 'Email is required.'})
-    elif SubscribedUsers.objects.get(email = email):
-        res = JsonResponse({'msg': 'Email Address already exists'})
-    elif not re.match(r"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", email):
-        res = JsonResponse({'msg': 'Invalid Email Address'})
-    else:
-        res = JsonResponse({'msg': ''})
-    return res

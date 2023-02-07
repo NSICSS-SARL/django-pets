@@ -15,7 +15,6 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
-print(BASE_DIR)
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -24,6 +23,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 # Application definition
@@ -31,10 +31,15 @@ THIRD_PARTY_APPS = [
     'anymail',
     'django_extensions',
     'corsheaders',
-    'django_summernote',   
+    'django_summernote',
+    'rest_framework',    
+    'rest_framework.authtoken',
+    'django_filters',
+    'django_countries', 
 ]
 
-LOCAL_APPS = ['apps.mail','apps.fructs',]
+LOCAL_APPS = ['apps.fructs',
+]
 
 SITE_ID = 1
 
@@ -95,6 +100,12 @@ MEDIA_URL = '/media/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
