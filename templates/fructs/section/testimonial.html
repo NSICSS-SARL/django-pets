@@ -1,0 +1,25 @@
+{% load static %}
+<div class="testimonail-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 text-center">
+                <div class="testimonial-sliders">
+                    {% for test in testimonials %}
+                    <div class="single-testimonial-slider">
+                        <div class="client-avater">
+                            <img src="{{ test.photo.url }}" alt="">
+                        </div>
+                        <div class="client-meta">
+                            <h3>{{ test.name}} <span>{{ test.work }}</span></h3>
+                            <p class="testimonial-body">{{ test.declaration }}</p>
+                            <div class="last-icon">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
