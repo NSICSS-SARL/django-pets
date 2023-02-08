@@ -38,7 +38,7 @@ THIRD_PARTY_APPS = [
     'django_countries', 
 ]
 
-LOCAL_APPS = ['apps.fructs',
+LOCAL_APPS = ['apps.fructs','apps.account',
 ]
 
 SITE_ID = 1
