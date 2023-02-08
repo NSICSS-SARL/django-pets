@@ -85,7 +85,7 @@ class Testimonial(models.Model):
 
 class Title(models.Model):    
     label = models.CharField(max_length=50)
-    link = models.CharField(max_length=50)
+    link = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.label
