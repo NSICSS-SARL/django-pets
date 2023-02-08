@@ -11,8 +11,8 @@ from .forms import LoginForm, UserRegistrationForm, \
                    UserEditForm, ProfileEditForm
 from .models import Profile
 from .models import Contact
-from actions.utils import create_action
-from actions.models import Action
+from apps.actions.utils import create_action
+from apps.actions.models import Action
 
 
 def user_login(request):
