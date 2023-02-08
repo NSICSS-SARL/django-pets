@@ -14,23 +14,26 @@ from .forms import *
 from rest_framework import viewsets # new
 from .serializers import TitleSerializer, TestimonialSerializer
 
-
-# Create your views here.
-def index(request):   
+def setContext():
     context = {}
     context['testimonials']= Testimonial.objects.all()
+    context['products'] = Product.objects.all()
+    context['categories'] = Categorie.objects.all()
+    return context
+
+context = setContext()
+
+# Create your views here.
+def index(request):
     return render(request, 'fructs/index.html', context)
 
 
-def about(request):
-    context = {}
-    context['testimonials']= Testimonial.objects.all()
+def about(request):    
     return render(request, 'fructs/about.html', context)
 
 
-def cart(request):
-    products = Product.objects.all()
-    return render(request, 'fructs/cart.html', {'products': products})
+def cart(request):    
+    return render(request, 'fructs/cart.html', context)
 
 
 def slider(request):
@@ -41,14 +44,13 @@ def news(request):
     return render(request, 'fructs/news.html')
 
 
-def shop(request):
-    categories = Categorie.objects.all()
+def shop(request):    
     products_list = Product.objects.all()
     # Pagination with 3 products per page
     paginator = Paginator(products_list, 3)
     page_number = request.GET.get('page', 1)
-    products = paginator.page(page_number)
-    return render(request, 'fructs/shop.html', {'products': products, 'categories': categories})
+    context['products'] = paginator.page(page_number)
+    return render(request, 'fructs/shop.html', context)
 
 
 def singlenews(request):
@@ -58,8 +60,9 @@ def singlenews(request):
 def singleproduct(request, nom):
     if nom:
         pdt = Product.objects.get(name=nom)
-        family = Product.objects.filter(label=pdt.label)
-        return render(request, 'fructs/single-product.html', {'pdt': pdt, 'products': list(family)})
+        context['products']=list(family = Product.objects.filter(label=pdt.label))
+        context['pdt']=pdt       
+        return render(request, 'fructs/single-product.html', context)
     return render(request, 'fructs/single-product.html')
 
 
