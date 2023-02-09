@@ -76,9 +76,11 @@ class Mail(models.Model):
 
 class Testimonial(models.Model):
     photo = models.ImageField(null=True, blank=True, upload_to='tester_images')
-    name = models.CharField(max_length=50)
-    work = models.CharField(max_length=20)
+    name = models.CharField(max_length=50, null=True, blank=True)
+    work = models.CharField(max_length=20, null=True, blank=True)
     declaration = models.TextField()
+    note = models.CharField(max_length=50, null=True, blank=True)
+
 
     def __str__(self):
         return self.name
@@ -86,6 +88,7 @@ class Testimonial(models.Model):
 class Title(models.Model):    
     label = models.CharField(max_length=50)
     link = models.CharField(max_length=50, null=True, blank=True)
+    note = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.label

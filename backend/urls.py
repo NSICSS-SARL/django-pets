@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [  
-    path('fructs/', include('apps.fructs.urls')),
+    path('', include('apps.fructs.urls')),
     path('admin/', admin.site.urls),
     path('account/', include('apps.users.urls')),
     # path('social-auth/',include('social_django.urls', namespace='social')),
