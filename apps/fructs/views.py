@@ -16,9 +16,13 @@ from .serializers import TitleSerializer, TestimonialSerializer
 
 def setContext():
     context = {}
+    products_list = Product.objects.all()
+    # Pagination with 3 products per page
+    paginator = Paginator(products_list, 3)
     context['testimonials']= Testimonial.objects.all()
     context['products'] = Product.objects.all()
     context['categories'] = Categorie.objects.all()
+    context['demo'] = products_list[:3]
     return context
 
 context = setContext()
@@ -44,11 +48,8 @@ def news(request):
     return render(request, 'fructs/news.html')
 
 
-def shop(request):    
-    products_list = Product.objects.all()
-    # Pagination with 3 products per page
-    paginator = Paginator(products_list, 3)
-    page_number = request.GET.get('page', 1)
+def shop(request):
+    page_number = request.GET.get('page', 1)    
     context['products'] = paginator.page(page_number)
     return render(request, 'fructs/shop.html', context)
 
