@@ -1,6 +1,24 @@
-{% extends "users/base.html" %}
-{% block title %} Login Page {% endblock title%}
-{% block content %}
+{%  extends  'incs/base.html' %}
+{% load static %}
+
+{% block context %}
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Get 24/7 Support</p>
+						<h1>Log in</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+<!-- login form -->
+
     <div class="form-content my-3 p-3">
         <div class="container">
             <div class="row justify-content-center">
@@ -76,4 +94,9 @@
             </div>
         </div>
      </div>
-{% endblock content %}
+<!-- end login form -->
+{% block carousel %}
+    
+{% endblock %}
+
+{% endblock %}
