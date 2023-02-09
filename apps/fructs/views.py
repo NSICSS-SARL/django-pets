@@ -17,10 +17,8 @@ from .serializers import TitleSerializer, TestimonialSerializer
 def setContext():
     context = {}
     products_list = Product.objects.all()
-    # Pagination with 3 products per page
-    paginator = Paginator(products_list, 3)
     context['testimonials']= Testimonial.objects.all()
-    context['products'] = Product.objects.all()
+    context['products'] =  products_list
     context['categories'] = Categorie.objects.all()
     context['demo'] = products_list[:3]
     return context
@@ -49,7 +47,9 @@ def news(request):
 
 
 def shop(request):
-    page_number = request.GET.get('page', 1)    
+    page_number = request.GET.get('page', 1)
+    # Pagination with 3 products per page
+    paginator = Paginator(context['products'], 3)        
     context['products'] = paginator.page(page_number)
     return render(request, 'fructs/shop.html', context)
 
@@ -60,18 +60,20 @@ def singlenews(request):
 
 def singleproduct(request, nom):
     if nom:
+        name = name.lower()
         pdt = Product.objects.get(name=nom)
-        context['products']=list(family = Product.objects.filter(label=pdt.label))
+        family = Product.objects.filter(label=pdt.label)
+        context['products']=list(family)
         context['pdt']=pdt       
         return render(request, 'fructs/single-product.html', context)
     return render(request, 'fructs/single-product.html')
 
 
 def checkout(request):
-    return render(request, 'fructs/single-product.html')
+    return render(request, 'fructs/single-product.html', context)
 
 
 def contact(request):
-    return render(request, 'fructs/contact.html')
+    return render(request, 'fructs/contact.html', context)
 
 
