@@ -1,11 +1,9 @@
 from django.shortcuts import render,  redirect
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse, JsonResponse
+from django.core.paginator import Paginator
+
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .models import Product, Categorie, Testimonial, Title
-import random
-from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import re
 from django.core.mail import send_mail
@@ -17,6 +15,10 @@ from .serializers import TitleSerializer, TestimonialSerializer
 def setContext():
     context = {}
     products_list = Product.objects.all()
+    context['titles']= Title.objects.all()
+    filtered = [x for x in products_list if x.isDemo is True]
+    context['filtered'] = filtered    
+    products_list = [x for x in products_list if x.isDemo == False]    
     context['testimonials']= Testimonial.objects.all()
     context['products'] =  products_list
     context['categories'] = Categorie.objects.all()
@@ -39,11 +41,11 @@ def cart(request):
 
 
 def slider(request):
-    return render(request, 'fructs/index_2.html')
+    return render(request, 'fructs/index_2.html', context)
 
 
 def news(request):
-    return render(request, 'fructs/news.html')
+    return render(request, 'fructs/news.html', context)
 
 
 def shop(request):
@@ -54,17 +56,13 @@ def shop(request):
     return render(request, 'fructs/shop.html', context)
 
 
-def singlenews(request):
-    return render(request, 'fructs/single-news.html')
-
-
 def singleproduct(request, nom):
     if nom:
         name = name.lower()
         pdt = Product.objects.get(name=nom)
         family = Product.objects.filter(label=pdt.label)
-        context['products']=list(family)
-        context['pdt']=pdt       
+        context['products'] = list(family)
+        context['pdt'] = pdt       
         return render(request, 'fructs/single-product.html', context)
     return render(request, 'fructs/single-product.html')
 

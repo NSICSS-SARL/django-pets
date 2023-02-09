@@ -9,7 +9,6 @@ urlpatterns= [
     path('contact', views.contact, name='contact'),
     path('slider', views.slider, name='slider'),
     path('shop', views.shop, name='shop'),
-    path('news', views.news, name='news'),    
-    path('singlenews', views.singlenews, name='singlenews'),
+    path('news', views.news, name='news'),   
     path('singleproduct/<str:nom>', views.singleproduct, name='singleproduct'),
 ]

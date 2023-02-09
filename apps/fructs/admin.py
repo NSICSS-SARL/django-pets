@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Categorie, Unitie, Breadcumb, Testimonial, Title
+from .models import Product, Categorie, Unitie, Breadcumb, Testimonial, Title, LocalUser
 
 # Register your models here.
 
@@ -12,4 +12,4 @@ admin.site.register(Unitie)
 admin.site.register(Breadcumb)
 admin.site.register(Testimonial)
 admin.site.register(Title)
-
+admin.site.register(LocalUser)

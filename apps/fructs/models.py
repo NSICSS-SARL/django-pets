@@ -1,5 +1,18 @@
 from django.db import models
 from django.utils import timezone
+from distutils.command.upload import upload
+
+from django.db import models
+from django.utils import timezone
+# for authentifications.
+from django.contrib.auth.models import User
+
+
+class LocalUser(User):
+    image = models.ImageField(upload_to='user_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.first_name
 
 class SubscribedUsers(models.Model):
     email = models.CharField(unique=True, max_length=50)
@@ -12,6 +25,12 @@ class Subscriber(models.Model):
     def __str__(self):
         return self.email + " (" + ("not " if not self.confirmed else "") + "confirmed)"
 
+class Featured(models.Model):
+    title = models.CharField(max_length=50)
+    paragraph = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
 
 class SubscribeModel(models.Model):
     sys_id = models.AutoField(primary_key=True, null=False, blank=True)
@@ -52,6 +71,8 @@ class Product(models.Model):
     label = models.ForeignKey(Categorie, on_delete=models.CASCADE, default='')
     unite = models.ForeignKey(Unitie, on_delete=models.DO_NOTHING, default='')
     sante = models.TextField(default='')
+    author = models.ForeignKey(LocalUser, on_delete=models.CASCADE, null=True, blank=True)
+    isDemo = models.BooleanField(blank=True, default=False)
 
     class Meta:
         ordering = ('name',)

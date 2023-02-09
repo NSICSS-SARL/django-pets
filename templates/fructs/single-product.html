@@ -10,7 +10,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>See more Details</p>
-						<h1>Single Product</h1>
+						<h1>Single Fruct</h1>
 					</div>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="{% url 'singleproduct' product.name %}"><img src="{{ product.image.url }}" alt=""></a>
+							<a href="{% url 'singleproduct' product.name|lowercase %}"><img src="{{ product.image.url }}" alt=""></a>
 						</div>
 						<h3>{{ product.name }}</h3>
 						<p class="product-price"><span>Per {{ product.unite }}</span> {{ product.price }}$ </p>
