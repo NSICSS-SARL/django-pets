@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
         ("fructs", "0003_localuser_product_author"),
     ]
 
-    operations = [
+    operations = [        
         migrations.AddField(
             model_name="product",
             name="isDemo",

@@ -92,23 +92,7 @@ class Migration(migrations.Migration):
                 ("confirmed", models.BooleanField(default=False)),
             ],
         ),
-        migrations.CreateModel(
-            name="Title",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                ("label", models.CharField(max_length=50)),
-                ("link", models.CharField(blank=True, max_length=50, null=True)),
-                ("note", models.CharField(blank=True, max_length=50, null=True)),
-            ],
-        ),
+       
         migrations.CreateModel(
             name="Unitie",
             fields=[

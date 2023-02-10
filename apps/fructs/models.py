@@ -110,6 +110,15 @@ class Title(models.Model):
     label = models.CharField(max_length=50)
     link = models.CharField(max_length=50, null=True, blank=True)
     note = models.CharField(max_length=50, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.label
+
+class Location(models.Model):
+    adresse = models.CharField(max_length=50)
+    street = models.CharField(max_length=50, null=True, blank=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    town = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=50, null=True, blank=True)
+    
