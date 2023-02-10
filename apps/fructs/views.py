@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from .models import Product, Categorie, Testimonial, Title
+from .models import Product, Categorie, Testimonial, Title, Location
 from sendgrid.helpers.mail import Mail
 import re
 from django.core.mail import send_mail
@@ -23,6 +23,8 @@ def setContext():
     context['products'] =  products_list
     context['categories'] = Categorie.objects.all()
     context['demo'] = products_list[:3]
+    addresses = Location.objects.all()
+    context['location']=addresses[0]
     return context
 
 context = setContext()
@@ -51,6 +53,7 @@ def news(request):
 def shop(request):
     page_number = request.GET.get('page', 1)
     # Pagination with 3 products per page
+    context['products'] = Product.objects.all()
     paginator = Paginator(context['products'], 3)        
     context['products'] = paginator.page(page_number)
     return render(request, 'fructs/shop.html', context)

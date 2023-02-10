@@ -121,4 +121,7 @@ class Location(models.Model):
     phone = models.CharField(max_length=50, null=True, blank=True)
     town = models.CharField(max_length=50, null=True, blank=True)
     country = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(null=False, blank=True, max_length=200, unique=True)
+    innner = models.CharField(max_length=50, null=True, blank=True)
+    outter = models.CharField(max_length=50, null=True, blank=True)
     
