@@ -42,7 +42,7 @@ THIRD_PARTY_APPS = [
     'debug_toolbar',
 ]
 
-LOCAL_APPS = ['apps.fructs','apps.actions','apps.images',]
+LOCAL_APPS = ['apps.fructs','apps.actions','apps.images','apps.emails','apps.coupons','apps.cart']
 
 SITE_ID = 1
 

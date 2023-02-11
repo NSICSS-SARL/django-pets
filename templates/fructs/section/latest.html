@@ -1,3 +1,4 @@
+{% load static %}
 <div class="latest-news mt-150 mb-150">
     <div class="container">
         <div class="row">
@@ -18,23 +19,7 @@
             </div>
             {% endfor %}
         </div>
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="pagination-wrap">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a class="active" href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include "fructs/section/pagination.html" with page=filtered %}
         <div class="row">
             <div class="col-lg-12 text-center">
                 <a href="{% url 'news' %}" class="boxed-btn">More News</a>
