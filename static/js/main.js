@@ -2,6 +2,8 @@
     "use strict";
 
     $(document).ready(function($){
+
+        $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
         
         // testimonial sliders
         $(".testimonial-sliders").owlCarousel({

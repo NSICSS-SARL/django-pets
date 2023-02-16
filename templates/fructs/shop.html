@@ -2,25 +2,14 @@
 {% load static %}
 
 {% block context %}
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
-						<h1>Shop</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+	<!-- breadcrumb-section -->	
+	{% include 'fructs/section/breadcumb.html' %}	
 	<!-- end breadcrumb section -->
 
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-
 			<div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
@@ -39,7 +28,7 @@
 					<div class="col-lg-4 col-md-6 text-center {{ product.label|lower }}">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="{% url 'singleproduct' product.name %}"><img src="{{ product.image.url }}" alt=""></a>
+							<a href="{% url 'singleproduct' product.slug %}"><img src="{{ product.image.url }}" alt=""></a>
 						</div>
 						<h3>{{ product.name|capfirst }}</h3>
 						<p class="product-price"><span>{{ product.unite }} </span> {{ product.price }} €</p>

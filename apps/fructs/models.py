@@ -63,6 +63,7 @@ class Unitie(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, max_length=50)
     description = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     price = models.DecimalField(max_digits=100, decimal_places=2)
@@ -85,6 +86,9 @@ class Breadcumb(models.Model):
     slug = models.SlugField()
     subtitle = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.slug
 
 class Mail(models.Model):
     email = models.CharField(max_length=50)

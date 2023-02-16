@@ -11,5 +11,5 @@ urlpatterns= [
     path('slider', views.slider, name='slider'),
     path('shop', views.shop, name='shop'),
     path('news', views.news, name='news'),   
-    path('singleproduct/<str:nom>', views.singleproduct, name='singleproduct'),
+    path('singleproduct/<str:slug>', views.singleproduct, name='singleproduct'),
 ]

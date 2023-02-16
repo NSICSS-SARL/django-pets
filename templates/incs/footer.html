@@ -35,9 +35,10 @@
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">Subscribe</h2>
 						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form enctype="multipart/form-data" method="POST" novalidate>
+						<form enctype="multipart/form-data" method="">
 							{% csrf_token %}
-							<input type="email" id="userName"  placeholder="Email" required>
+							<input type="email" id="userName"  placeholder="Email" required
+							data-validation-required-message="Email is required">
 							<button type="submit" id="submit"><i class="fas fa-paper-plane"></i></button>
 						</form>
 					</div>
@@ -69,3 +70,6 @@
 		</div>
 	</div>
 	<!-- end copyright -->
+	<script>
+	
+	</script>
