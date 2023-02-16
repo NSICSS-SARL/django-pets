@@ -1,5 +1,5 @@
-Pets is a django app for beginners. It describes the steps to follow all the steps to create an application.
-We use functions based views and the application evolves little by little towards a backend and frontend react context.
+unctiPets is a django app for beginners. It describes the steps to follow all the steps to create an application.
+We use fons based views and the application evolves little by little towards a backend and frontend react context.
 # Set Up a Django Project
 - [x] Set up a virtual environment
 - [x] Install Django
